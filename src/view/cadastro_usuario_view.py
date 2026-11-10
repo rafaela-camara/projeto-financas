@@ -48,8 +48,6 @@ class CadastroUsuarioView(ft.View):
                          botao_cadastrar,
                          voltar_login]
 
-
-
     def cadastrar(self):
         usuario = self.campo_novo_usuario.value
         senha = self.campo_nova_senha.value

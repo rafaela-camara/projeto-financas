@@ -43,11 +43,16 @@ class LoginUsuarioView(ft.View):
                       on_click=self.ir_cadastro)
         
         
-        container= ft.Container(content=ft.Column(controls=[titulo,
+        container = ft.Container(content=ft.Column(controls=[titulo,
                        self.campo_login_usuario,
                        self.campo_login_senha,
                        botao_entrar,
-                       ir_cadastrar],))
+                       ir_cadastrar],alignment="center",
+                                    horizontal_alignment="center",),
+                                    bgcolor="#FCFDFB",
+                                    width=400,
+                                    height=450,
+                                    border_radius=40)
 
         self.controls = [container]
 

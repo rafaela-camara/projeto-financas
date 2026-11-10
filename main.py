@@ -37,14 +37,7 @@ def main(pagina:ft.Page):
                                         ft.NavigationBarDestination(icon=ft.CupertinoIcons.SQUARE_ARROW_RIGHT, label="Sair"),],
                                         on_change=navegacao)
 
-
     
-    
-    
-    
-    
-    
-
     def roteamento(e=None):
         pagina.views.clear()
 
@@ -88,6 +81,6 @@ def main(pagina:ft.Page):
     # quando a pagina mudar de rota
     pagina.on_route_change = roteamento
     roteamento()
-    pagina.navigate("/login")
+    pagina.navigate("/categoria")
 
 ft.run(main)
