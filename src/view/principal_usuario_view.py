@@ -1,4 +1,5 @@
 import flet as ft
+from src.model.usuario_model import Usuario
 class PrincipalUsuarioView(ft.View):
     def __init__(self,pagina:ft.Page):
         super().__init__()
