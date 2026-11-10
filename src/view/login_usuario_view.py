@@ -43,12 +43,13 @@ class LoginUsuarioView(ft.View):
                       on_click=self.ir_cadastro)
         
         
-        self.controls=[titulo,
+        container= ft.Container(content=ft.Column(controls=[titulo,
                        self.campo_login_usuario,
                        self.campo_login_senha,
                        botao_entrar,
-                       ir_cadastrar]
-        
+                       ir_cadastrar],))
+
+        self.controls = [container]
 
     async def verificar(self):
         usuario = self.campo_login_usuario.value

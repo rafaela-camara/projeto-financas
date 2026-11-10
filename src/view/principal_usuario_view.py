@@ -8,7 +8,7 @@ class PrincipalUsuarioView(ft.View):
         self.route = "/principal"
 
         dados_usuario = pagina.session.store.get("usuario_logado")
-        nome_usuario = dados_usuario.get("usuario")
+        nome_usuario = dados_usuario.get("login")
 
         self.bgcolor ="#DFEBE4"
         self.horizontal_alignment ="center"
