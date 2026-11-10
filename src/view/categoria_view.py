@@ -18,11 +18,11 @@ class CategoriaUsuarioView(ft.View):
         titulo_com_linhas = ft.Row(alignment="center",
                                    vertical_alignment="center", 
                                    controls=[ft.Container(expand=True,
-                                                          height=1,
+                                                          height=1.5,
                                                           bgcolor="#395F4A"),
                                                           ft.Container(content=titulo),
                                                           ft.Container(expand=True,
-                                                                       height=1,
+                                                                       height=1.5,
                                                                        bgcolor="#395F4A")])
 
         subtitulo_cadastrar = ft.Text(value="Cadastre sua Categoria",
@@ -58,8 +58,7 @@ class CategoriaUsuarioView(ft.View):
 
         container_baixo = ft.Container(content=ft.Column(controls=[subtitulo_existente],
                                                                   alignment="center",
-                                                                  horizontal_alignment="center",),
-                                                                  width=5000,)
+                                                                  horizontal_alignment="center",))
 
 
 
