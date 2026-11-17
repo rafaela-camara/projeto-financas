@@ -11,7 +11,7 @@ class CategoriaUsuarioView(ft.View):
         self.horizontal_alignment ="center"
         dados_usuario = pagina.session.store.get("usuario_logado")
         self.login = dados_usuario.get("login")
-        self.historico = []
+        
         
         titulo = ft.Text(value="Categoria",
                         size = 40,
@@ -55,11 +55,15 @@ class CategoriaUsuarioView(ft.View):
                                 weight=ft.FontWeight.BOLD,
                                 color="#395F4A")
 
-        container_baixo = ft.Container(content=ft.Column(controls=[subtitulo_existente],
+        self.lista_categorias = []
+
+        container_baixo = ft.Container(content=ft.Column(controls=[subtitulo_existente,
+                                                                   self.lista_categorias],
                                                                   alignment="center",
                                                                   horizontal_alignment="center",))
 
 
+        self.atualizar_lista()
 
         self.controls =[titulo_com_linhas,
                         container_cima,
@@ -74,3 +78,15 @@ class CategoriaUsuarioView(ft.View):
             self.pagina.show_dialog(ft.SnackBar(ft.Text("Cadastro efeituado com sucesso!"), bgcolor="#21a517"))
         else:
             self.pagina.show_dialog(ft.SnackBar(ft.Text("Erro ao cadastrar. Entre em contato com o adiministrador"), bgcolor="#e0101f"))
+
+        self.atualizar_lista()
+         
+    def atualizar_lista(self):
+        categorias = Categoria().recuperar_todos(self.login)
+
+        for categoria in categorias:
+            nome_categoria = categoria.get("tipo")
+            campo_tipo = ft.Text(value=nome_categoria)
+            self.lista_categorias.append(campo_tipo)
+
+        self.pagina.update()
