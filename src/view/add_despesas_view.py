@@ -93,8 +93,6 @@ class AddDespesaUsuarioView(ft.View):
         else:
             self.pagina.show_dialog(ft.SnackBar(ft.Text("Erro ao cadastrar. Entre em contato com o adiministrador"), bgcolor="#e0101f"))
 
-        if self.descricao == "" or self.valor == "" or self.data == "" or self.categoria == "":
-            self.pagina.show_dialog(ft.SnackBar(ft.Text("Peencha todos os campos"), bgcolor="#1A1AB6"))
         self.descricao.value = ""
         self.valor.value = ""
         self.data.value = ""
