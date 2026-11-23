@@ -81,6 +81,7 @@ class CategoriaUsuarioView(ft.View):
         else:
             self.pagina.show_dialog(ft.SnackBar(ft.Text("Erro ao cadastrar. Entre em contato com o adiministrador"), bgcolor="#e0101f"))
 
+        self.texto_cadastrar.value = ""
         self.atualizar_lista()
          
     def atualizar_lista(self):
