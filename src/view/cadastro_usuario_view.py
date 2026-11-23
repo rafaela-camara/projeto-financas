@@ -42,13 +42,19 @@ class CadastroUsuarioView(ft.View):
                       width=210,
                       on_click=self.voltar_login)
 
-        self.controls = [titulo, 
-                         self.campo_novo_usuario,
-                         self.campo_nova_senha,
-                         botao_cadastrar,
-                         voltar_login]
+        container = ft.Container(content=ft.Column(controls=[titulo,
+                                                             self.campo_novo_usuario,
+                                                             self.campo_nova_senha,
+                                                             botao_cadastrar,
+                                                             voltar_login],
+                                            alignment="center",
+                                            horizontal_alignment="center",),
+                                            bgcolor="#FCFDFB",
+                                            width=400,
+                                            height=450,
+                                            border_radius=40)
 
-
+        self.controls = [container]
 
     def cadastrar(self):
         usuario = self.campo_novo_usuario.value

@@ -43,12 +43,18 @@ class LoginUsuarioView(ft.View):
                       on_click=self.ir_cadastro)
         
         
-        self.controls=[titulo,
+        container = ft.Container(content=ft.Column(controls=[titulo,
                        self.campo_login_usuario,
                        self.campo_login_senha,
                        botao_entrar,
-                       ir_cadastrar]
-        
+                       ir_cadastrar],alignment="center",
+                                    horizontal_alignment="center",),
+                                    bgcolor="#FCFDFB",
+                                    width=400,
+                                    height=450,
+                                    border_radius=40)
+
+        self.controls = [container]
 
     async def verificar(self):
         usuario = self.campo_login_usuario.value
@@ -59,7 +65,9 @@ class LoginUsuarioView(ft.View):
         resultado = Usuario().verificar(usuario,senha)
 
         if resultado:
+            self.pagina.session.store.set("usuario_logado",resultado)
             await self.entrar()
+            
         else:
             self.pagina.show_dialog(ft.SnackBar(ft.Text("Erro ao entrar. Entre em contato com o adiministrador"), bgcolor="#e0101f"))
     
