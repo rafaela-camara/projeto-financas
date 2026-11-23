@@ -90,7 +90,6 @@ class CategoriaUsuarioView(ft.View):
 
         for categoria in categorias:
             id_categoria = categoria.get("id_categoria")
-            print(id_categoria)
             nome_categoria = categoria.get("tipo")
             botao_excluir = ft.FloatingActionButton(icon=ft.Icon(icon=ft.Icons.DELETE_OUTLINE,
                                                                                              color="#395F4A"),
