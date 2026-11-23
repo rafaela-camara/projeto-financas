@@ -19,3 +19,4 @@ class DespesaUsuarioView(ft.View):
                         color="#395F4A")
         
         self.controls =[titulo]
+    

@@ -5,7 +5,7 @@ class Despesa:
         pass
 
     @staticmethod
-    def incluir(login:str,id_categoria:int,descricao:str,valor:float,data:str,hora:str) -> int:
+    def incluir(login:str,id_categoria:int,descricao:str,valor:float,data:str,) -> int:
         conexao,cursor = Conexao().conectar()
         
         if not conexao:
@@ -14,10 +14,10 @@ class Despesa:
         
         try:
             cursor.execute("""
-                            INSERT INTO tb_despesas (login,id_categoria,descricao,valor,data,hora) 
-                        VALUES (%s,%s,%s,%s,%s,%s)
+                            INSERT INTO tb_despesas (login,id_categoria,descricao,valor,data) 
+                        VALUES (%s,%s,%s,%s,%s)
                         """,
-                        [login,id_categoria,descricao,valor,data,hora])
+                        [login,id_categoria,descricao,valor,data])
             id_despesa = cursor.lastrowid
             conexao.commit()
             conexao.close()

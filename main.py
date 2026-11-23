@@ -75,7 +75,6 @@ def main(pagina:ft.Page):
             tela_categoria.navigation_bar = barra_navegacao
             pagina.views.append(tela_categoria)
 
-
         pagina.update()
 
     # quando a pagina mudar de rota
