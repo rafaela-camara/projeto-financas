@@ -1,5 +1,4 @@
 import flet as ft
-from src.model.usuario_model import Usuario
 from src.model.despesa_model import Despesa
 class DespesaUsuarioView(ft.View):
     def __init__(self,pagina:ft.Page):
@@ -32,11 +31,11 @@ class DespesaUsuarioView(ft.View):
         self.lista_despesas = []
         #pegar as despesas, percorrer as despesas, crias a lista despesas 
 
-        tabela_despesas = ft.DataTable(columns=[ft.DataColumn(label="Usuario"),
-                                                ft.DataColumn(label="id_categoria"),
-                                                ft.DataColumn(label="Descricao"),
-                                                ft.DataColumn(label="valor"),
-                                                ft.DataColumn(label="data")],
+        tabela_despesas = ft.DataTable(columns=[
+                                                ft.DataColumn(ft.Text(value="Categoria",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
+                                                ft.DataColumn(ft.Text(value="Descrição",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
+                                                ft.DataColumn(ft.Text(value="Valor",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
+                                                ft.DataColumn(ft.Text(value="Data",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD))],
                                                 rows=self.lista_despesas)
 
         self.atualizar_despesas()
@@ -46,14 +45,13 @@ class DespesaUsuarioView(ft.View):
 
     def atualizar_despesas(self):
         despesas = Despesa.recuperar_todos(self.login)
-
+        
         for despesa in despesas:
             linha = ft.DataRow(cells=[
-                                    ft.DataCell(ft.Text(str(despesa.get("login")))),
-                                    ft.DataCell(ft.Text(str(despesa.get("id_categoria")))),
-                                    ft.DataCell(ft.Text(str(despesa.get("descricao")))),
-                                    ft.DataCell(ft.Text(str(despesa.get("valor")))),
-                                    ft.DataCell(ft.Text(str(despesa.get("data"))))])
+                                    ft.DataCell(ft.Text(str(despesa.get("tipo")),size=17,font_family="Georgia")),
+                                    ft.DataCell(ft.Text(str(despesa.get("descricao")),size=17,font_family="Georgia")),
+                                    ft.DataCell(ft.Text(str(despesa.get("valor")),size=17,)),
+                                    ft.DataCell(ft.Text(str(despesa.get("data")),size=17,))])
 
             self.lista_despesas.append(linha)
 
