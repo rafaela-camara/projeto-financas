@@ -48,10 +48,10 @@ class DespesaUsuarioView(ft.View):
     def atualizar_despesas(self):
         self.lista_despesas.clear()
         despesas = Despesa.recuperar_todos(self.login)
-        id_despesa = str(despesa.get("id_despesa"))
         for despesa in despesas:
+            id_despesa = str(despesa.get("id_despesa"))
             linha = ft.DataRow(cells=[
-                                    ft.DataCell(ft.Text)),size=17,font_family="Georgia")),
+                                    ft.DataCell(ft.Text("id_despesa")),
                                     ft.DataCell(ft.Text(str(despesa.get("tipo")),size=17,font_family="Georgia")),
                                     ft.DataCell(ft.Text(str(despesa.get("descricao")),size=17,font_family="Georgia")),
                                     ft.DataCell(ft.Text(str(despesa.get("valor")),size=17,)),
@@ -61,8 +61,9 @@ class DespesaUsuarioView(ft.View):
                                                                                              bgcolor="#9FC5B0",
                                                                                              width=35,
                                                                                              height=30,
-                                                                                             on_click=self.excluir_despesa,
-                                                                                             key=id_despesa))])
+                                                                                             key=id_despesa,
+                                                                                             on_click=self.excluir_despesa
+                                                                                             ))])
 
             self.lista_despesas.append(linha)
 
