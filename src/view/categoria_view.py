@@ -1,5 +1,4 @@
 import flet as ft
-from src.model.usuario_model import Usuario
 from src.model.categoria_model import Categoria
 class CategoriaUsuarioView(ft.View):
     def __init__(self,pagina:ft.Page):

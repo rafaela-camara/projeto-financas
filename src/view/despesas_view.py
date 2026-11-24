@@ -1,6 +1,6 @@
 import flet as ft
 from src.model.usuario_model import Usuario
-
+from src.model.despesa_model import Despesa
 class DespesaUsuarioView(ft.View):
     def __init__(self,pagina:ft.Page):
         super().__init__()
@@ -14,7 +14,7 @@ class DespesaUsuarioView(ft.View):
         
 
         titulo = ft.Text(value="Despesas",
-                        size = 25,
+                        size = 40,
                         font_family="Georgia",
                         weight=ft.FontWeight.BOLD,
                         color="#395F4A")
@@ -27,19 +27,34 @@ class DespesaUsuarioView(ft.View):
                                                                           ft.Container(content=titulo),
                                                                           ft.Container(expand=True,
                                                                                        height=1.5,
-                                                                                       bgcolor="#395F4A")],
-                                                                                       margin=ft.Margin.only(bottom=60))
+                                                                                       bgcolor="#395F4A")])
 
-        lista_despesas = []
+        self.lista_despesas = []
         #pegar as despesas, percorrer as despesas, crias a lista despesas 
 
-        tabela_despesas = ft.DataTable(columns=[ft.DataColumn(label="id da Despesa"),
-                                                ft.DataColumn(label="Descrição"),
-                                                ft.DataColumn(label="Valor"),
-                                                ft.DataColumn(label="Data"),
-                                                ft.DataColumn(label="Categoria")],
-                                                rows=[ft.DataRow()
-                                                ])
-        
-        self.controls =[titulo_com_linhas]
-    
+        tabela_despesas = ft.DataTable(columns=[ft.DataColumn(label="Usuario"),
+                                                ft.DataColumn(label="id_categoria"),
+                                                ft.DataColumn(label="Descricao"),
+                                                ft.DataColumn(label="valor"),
+                                                ft.DataColumn(label="data")],
+                                                rows=self.lista_despesas)
+
+        self.atualizar_despesas()
+        self.controls =[titulo_com_linhas,
+                        tabela_despesas]
+
+
+    def atualizar_despesas(self):
+        despesas = Despesa.recuperar_todos(self.login)
+
+        for despesa in despesas:
+            linha = ft.DataRow(cells=[
+                                    ft.DataCell(ft.Text(str(despesa.get("login")))),
+                                    ft.DataCell(ft.Text(str(despesa.get("id_categoria")))),
+                                    ft.DataCell(ft.Text(str(despesa.get("descricao")))),
+                                    ft.DataCell(ft.Text(str(despesa.get("valor")))),
+                                    ft.DataCell(ft.Text(str(despesa.get("data"))))])
+
+            self.lista_despesas.append(linha)
+
+        self.pagina.update()
