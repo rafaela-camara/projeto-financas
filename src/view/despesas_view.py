@@ -35,7 +35,8 @@ class DespesaUsuarioView(ft.View):
                                                 ft.DataColumn(ft.Text(value="Categoria",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
                                                 ft.DataColumn(ft.Text(value="Descrição",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
                                                 ft.DataColumn(ft.Text(value="Valor",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
-                                                ft.DataColumn(ft.Text(value="Data",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD))],
+                                                ft.DataColumn(ft.Text(value="Data",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
+                                                ft.DataColumn(ft.Text(value="Excluir",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD))],
                                                 rows=self.lista_despesas)
 
         self.atualizar_despesas()
@@ -44,6 +45,7 @@ class DespesaUsuarioView(ft.View):
 
 
     def atualizar_despesas(self):
+        self.lista_despesas.clear()
         despesas = Despesa.recuperar_todos(self.login)
         
         for despesa in despesas:
@@ -51,8 +53,20 @@ class DespesaUsuarioView(ft.View):
                                     ft.DataCell(ft.Text(str(despesa.get("tipo")),size=17,font_family="Georgia")),
                                     ft.DataCell(ft.Text(str(despesa.get("descricao")),size=17,font_family="Georgia")),
                                     ft.DataCell(ft.Text(str(despesa.get("valor")),size=17,)),
-                                    ft.DataCell(ft.Text(str(despesa.get("data")),size=17,))])
+                                    ft.DataCell(ft.Text(str(despesa.get("data")),size=17,)),
+                                    ft.DataCell(ft.FloatingActionButton(icon=ft.Icon(icon=ft.Icons.DELETE_OUTLINE,
+                                                                                             color="#395F4A"),
+                                                                                             bgcolor="#9FC5B0",
+                                                                                             width=35,
+                                                                                             height=30,
+                                                                                             on_click=self.excluir_despesa,
+                                                                                             key=self.login))])
 
             self.lista_despesas.append(linha)
 
         self.pagina.update()
+
+    def excluir_despesa(self, botao):
+        login = botao.control.key
+        Despesa().excluir(login)
+        self.atualizar_despesas()
