@@ -1,5 +1,4 @@
 import flet as ft
-from src.model.usuario_model import Usuario
 from src.model.categoria_model import Categoria
 from src.model.despesa_model import Despesa
 from datetime import datetime
@@ -72,6 +71,7 @@ class AddDespesaUsuarioView(ft.View):
                       bgcolor="#9FC5B0",
                       width=200,
                       on_click=self.add)
+        
         self.controls =[titulo_com_linhas,
                         self.descricao,
                         self.valor,
