@@ -60,7 +60,7 @@ class Despesa:
         
         try:
             cursor.execute("""
-                            SELECT login,id_categoria,descricao,valor,data,hora from tb_despesas
+                            SELECT login,id_categoria,descricao,valor,data,id_despesa from tb_despesas
                            WHERE login = %s AND id_categoria = %s
                         """,[login,id_categoria])
             

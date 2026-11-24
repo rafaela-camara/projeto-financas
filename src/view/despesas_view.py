@@ -51,7 +51,7 @@ class DespesaUsuarioView(ft.View):
         for despesa in despesas:
             id_despesa = str(despesa.get("id_despesa"))
             linha = ft.DataRow(cells=[
-                                    ft.DataCell(ft.Text("id_despesa")),
+                                    ft.DataCell(id_despesa),
                                     ft.DataCell(ft.Text(str(despesa.get("tipo")),size=17,font_family="Georgia")),
                                     ft.DataCell(ft.Text(str(despesa.get("descricao")),size=17,font_family="Georgia")),
                                     ft.DataCell(ft.Text(str(despesa.get("valor")),size=17,)),
