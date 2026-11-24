@@ -32,6 +32,7 @@ class DespesaUsuarioView(ft.View):
         #pegar as despesas, percorrer as despesas, crias a lista despesas 
 
         tabela_despesas = ft.DataTable(columns=[
+                                                ft.DataColumn(ft.Text(value="ID Despesa",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
                                                 ft.DataColumn(ft.Text(value="Categoria",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
                                                 ft.DataColumn(ft.Text(value="Descrição",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
                                                 ft.DataColumn(ft.Text(value="Valor",size=20,font_family="Georgia",weight=ft.FontWeight.BOLD)),
@@ -47,9 +48,10 @@ class DespesaUsuarioView(ft.View):
     def atualizar_despesas(self):
         self.lista_despesas.clear()
         despesas = Despesa.recuperar_todos(self.login)
-        
+        id_despesa = str(despesa.get("id_despesa"))
         for despesa in despesas:
             linha = ft.DataRow(cells=[
+                                    ft.DataCell(ft.Text)),size=17,font_family="Georgia")),
                                     ft.DataCell(ft.Text(str(despesa.get("tipo")),size=17,font_family="Georgia")),
                                     ft.DataCell(ft.Text(str(despesa.get("descricao")),size=17,font_family="Georgia")),
                                     ft.DataCell(ft.Text(str(despesa.get("valor")),size=17,)),
@@ -60,13 +62,13 @@ class DespesaUsuarioView(ft.View):
                                                                                              width=35,
                                                                                              height=30,
                                                                                              on_click=self.excluir_despesa,
-                                                                                             key=self.login))])
+                                                                                             key=id_despesa))])
 
             self.lista_despesas.append(linha)
 
         self.pagina.update()
 
     def excluir_despesa(self, botao):
-        login = botao.control.key
-        Despesa().excluir(login)
+        id_despesa = botao.control.key
+        Despesa().excluir(id_despesa)
         self.atualizar_despesas()
